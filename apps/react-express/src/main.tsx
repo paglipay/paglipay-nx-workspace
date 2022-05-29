@@ -10,12 +10,17 @@ import {
   dlayoutReducer,
 } from './app/store/features/dlayout/dlayout.slice';
 
+import { USER_FEATURE_KEY, userReducer } from './app/store/user/user.slice';
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
 const store = configureStore({
-  reducer: { [DLAYOUT_FEATURE_KEY]: dlayoutReducer },
+  reducer: {
+    [USER_FEATURE_KEY]: userReducer,
+    [DLAYOUT_FEATURE_KEY]: dlayoutReducer,
+  },
   // Additional middleware can be passed to this array
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
   // devTools: process.env.NODE_ENV !== 'production',

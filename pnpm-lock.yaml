@@ -27,6 +27,7 @@ specifiers:
   '@types/node': 16.11.7
   '@types/react': 18.0.8
   '@types/react-dom': 18.0.3
+  '@types/react-router-dom': 5.3.3
   '@typescript-eslint/eslint-plugin': ~5.18.0
   '@typescript-eslint/parser': ~5.18.0
   babel-jest: 27.5.1
@@ -50,6 +51,7 @@ specifiers:
   react-dom: 18.1.0
   react-icons: ^4.3.1
   react-redux: 8.0.1
+  react-router-dom: 6.3.0
   react-test-renderer: 18.1.0
   regenerator-runtime: 0.13.7
   ts-jest: 27.1.4
@@ -68,6 +70,7 @@ dependencies:
   react-dom: 18.1.0_react@18.1.0
   react-icons: 4.3.1_react@18.1.0
   react-redux: 8.0.1_3vjunwlmc3akvx5gzli76tirsm
+  react-router-dom: 6.3.0_ef5jwxihqo6n7gxfmzogljlgcm
   regenerator-runtime: 0.13.7
   tslib: 2.4.0
 
@@ -97,6 +100,7 @@ devDependencies:
   '@types/node': 16.11.7
   '@types/react': 18.0.8
   '@types/react-dom': 18.0.3
+  '@types/react-router-dom': 5.3.3
   '@typescript-eslint/eslint-plugin': 5.18.0_qop66kdz473gtxyqakjhziybiy
   '@typescript-eslint/parser': 5.18.0_uhoeudlwl7kc47h4kncsfowede
   babel-jest: 27.5.1_@babel+core@7.12.13
@@ -6282,6 +6286,10 @@ packages:
       '@types/unist': 2.0.6
     dev: true
 
+  /@types/history/4.7.11:
+    resolution: {integrity: sha512-qjDJRrmvBMiTx+jyLxvLfJU7UznFuokDv4f3WRuriHKERccVpFU+8XMQUAbDzoiJCsmexxRExQeMwwCdamSKDA==}
+    dev: true
+
   /@types/hoist-non-react-statics/3.3.1:
     resolution: {integrity: sha512-iMIqiko6ooLrTh1joXodJK5X9xeEALT1kM5G3ZLhD3hszxBdIEd5C75U834D9mLcINgD4OyZf5uQXjkuYydWvA==}
     dependencies:
@@ -6413,6 +6421,21 @@ packages:
   /@types/react-dom/18.0.3:
     resolution: {integrity: sha512-1RRW9kst+67gveJRYPxGmVy8eVJ05O43hg77G2j5m76/RFJtMbcfAs2viQ2UNsvvDg8F7OfQZx8qQcl6ymygaQ==}
     dependencies:
+      '@types/react': 18.0.8
+    dev: true
+
+  /@types/react-router-dom/5.3.3:
+    resolution: {integrity: sha512-kpqnYK4wcdm5UaWI3fLcELopqLrHgLqNsdpHauzlQktfkHL3npOSwtj1Uz9oKBAzs7lFtVkV8j83voAz2D8fhw==}
+    dependencies:
+      '@types/history': 4.7.11
+      '@types/react': 18.0.8
+      '@types/react-router': 5.1.18
+    dev: true
+
+  /@types/react-router/5.1.18:
+    resolution: {integrity: sha512-YYknwy0D0iOwKQgz9v8nOzt2J6l4gouBmDnWqUUznltOTaon+r8US8ky8HvN0tXvc38U9m6z/t2RsVsnd1zM0g==}
+    dependencies:
+      '@types/history': 4.7.11
       '@types/react': 18.0.8
     dev: true
 
@@ -11387,7 +11410,6 @@ packages:
     resolution: {integrity: sha512-ZqaKwjjrAYUYfLG+htGaIIZ4nioX2L70ZUMIFysS3xvBsSG4x/n1V6TXV3N8ZYNuFGlDirFg32T7B6WOUPDYcQ==}
     dependencies:
       '@babel/runtime': 7.18.0
-    dev: true
 
   /hmac-drbg/1.0.1:
     resolution: {integrity: sha1-0nRXAQJabHdabFRXk+1QL8DGSaE=}
@@ -15584,7 +15606,6 @@ packages:
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
       react-router: 6.3.0_react@18.1.0
-    dev: true
 
   /react-router/6.3.0_react@18.1.0:
     resolution: {integrity: sha512-7Wh1DzVQ+tlFjkeo+ujvjSqSJmkt1+8JO+T5xklPlgrh70y7ogx75ODRW0ThWhY7S+6yEDks8TYrtQe/aoboBQ==}
@@ -15593,7 +15614,6 @@ packages:
     dependencies:
       history: 5.3.0
       react: 18.1.0
-    dev: true
 
   /react-shallow-renderer/16.15.0_react@18.1.0:
     resolution: {integrity: sha512-oScf2FqQ9LFVQgA73vr86xl2NaOIX73rh+YFqcOp68CWj56tSfgtGKrEbyhCj0rSijyG9M1CYprTh39fBi5hzA==}

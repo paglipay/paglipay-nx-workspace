@@ -14,6 +14,10 @@ import Layout from './components/layout/layout';
 import ThreeColumnCard from './components/three-column-card/three-column-card';
 import FourColumnCard from './components/four-column-card/four-column-card';
 import { Badge } from 'react-bootstrap';
+import { Route, Routes, Link } from 'react-router-dom';
+
+import { CodelabListsDataAccess } from '@create-nx-workspace/codelab-lists/data-access';
+
 export const App = () => {
   const [m, setMessage] = useState<Message>({ message: '' });
 
@@ -25,6 +29,42 @@ export const App = () => {
 
   return (
     <>
+    <nav className="navbar navbar-default">
+      <div role="navigation" className="container-fluid">
+        <ul className="nav navbar-nav">
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/data-access">CodelabListsDataAccess</Link>
+          </li>
+          <li>
+            <Link to="/page-2">Page 2</Link>
+          </li>
+        </ul>
+      </div>
+      </nav>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div>
+              This is the generated root route.{' '}
+              <Link to="/page-2">Click here for page 2.</Link>
+            </div>
+          }
+        />
+        <Route path="/data-access" element={<CodelabListsDataAccess />} />
+        <Route
+          path="/page-2"
+          element={
+            <div>
+              <Link to="/">Click here to go back to root page.</Link>
+            </div>
+          }
+        />
+      </Routes>
+      {/* END: routes */}
       <Badge bg="success">{m.message}</Badge>
       <h1>Welcome react-express!</h1>
       <div style={{ textAlign: 'center' }}>
@@ -78,6 +118,13 @@ export const App = () => {
           alt="Nx - Smart, Fast and Extensible Build System"
         /> */}
       </div>
+
+      {/* START: routes */}
+      {/* These routes and navigation have been generated for you */}
+      {/* Feel free to move and update them to fit your needs */}
+      <br />
+      <hr />
+      <br />
     </>
   );
 };

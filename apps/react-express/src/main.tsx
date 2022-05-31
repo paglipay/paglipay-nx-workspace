@@ -10,6 +10,8 @@ import {
   dlayoutReducer,
 } from './app/store/features/dlayout/dlayout.slice';
 
+import { BrowserRouter } from 'react-router-dom';
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
@@ -27,7 +29,9 @@ const store = configureStore({
 root.render(
   <Provider store={store}>
     <StrictMode>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </StrictMode>
   </Provider>
 );

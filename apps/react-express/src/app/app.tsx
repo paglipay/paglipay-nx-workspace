@@ -16,6 +16,8 @@ import { Route, Routes, Link } from 'react-router-dom';
 
 import { CodelabListsDataAccess } from '@create-nx-workspace/codelab-lists/data-access';
 
+import { dlayoutActions } from './store/features/dlayout/dlayout.slice'
+import { useSelector } from "react-redux";
 export const App = () => {
   const [m, setMessage] = useState<Message>({ message: '' });
 
@@ -25,6 +27,7 @@ export const App = () => {
       .then(setMessage);
   }, []);
 
+  // console.log('user', user)
   return (
     <>
     <nav className="navbar navbar-default">
@@ -42,6 +45,7 @@ export const App = () => {
         </ul>
       </div>
       </nav>
+      <button onClick={() => dlayoutActions.add({id:0, sections:[], jsonData:[]})} >Add</button>
       <Routes>
         <Route
           path="/"

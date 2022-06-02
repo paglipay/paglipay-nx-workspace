@@ -44,13 +44,13 @@ export function ThreeColumnCard(props: ThreeColumnCardProps) {
       // ]}
       sections={[
         {
-          title: 'Section Title',
+          title: 'Section One',
           fluid: true,
           cols: ['4', '4', '4', '4', '4', '4'],
           featureTypesArry: ['a', 'a','a'],
         },
         {
-          title: 'Section Title',
+          title: 'Section Two',
           fluid: false,
           cols: ['4', '4', '4', '4', '4', '4'],
           featureTypesArry: ['p'],

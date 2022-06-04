@@ -1,54 +1,34 @@
-import { fetchDlayout, dlayoutAdapter, dlayoutReducer } from './dlayout.slice';
+import counterReducer, {
+  CounterState,
+  increment,
+  decrement,
+  incrementByAmount,
+} from './dlayout.slice';
 
-describe('dlayout reducer', () => {
-
+describe('counter reducer', () => {
+  const initialState: CounterState = {
+    value: 3,
+    status: 'idle'
+  };
   it('should handle initial state', () => {
-      expect(true).toEqual(true);
+    expect(counterReducer(undefined, { type: 'unknown' })).toEqual({
+      value: 0,
+      status: 'idle',
     });
-  // it('should handle initial state', () => {
-  //   const expected = dlayoutAdapter.getInitialState({
-  //     loadingStatus: 'not loaded',
-  //     error: null,
-  //   });
+  });
 
-  //   expect(dlayoutReducer(undefined, { type: '' })).toEqual(expected);
-  // });
+  it('should handle increment', () => {
+    const actual = counterReducer(initialState, increment());
+    expect(actual.value).toEqual(4);
+  });
 
-  // it('should handle fetchDlayouts', () => {
-  //   let state = dlayoutReducer(undefined, fetchDlayout.pending(null, null));
+  it('should handle decrement', () => {
+    const actual = counterReducer(initialState, decrement());
+    expect(actual.value).toEqual(2);
+  });
 
-  //   expect(state).toEqual(
-  //     expect.objectContaining({
-  //       loadingStatus: 'loading',
-  //       error: null,
-  //       entities: {},
-  //     })
-  //   );
-
-  //   state = dlayoutReducer(
-  //     state,
-  //     fetchDlayout.fulfilled([{ id: 1 }], null, null)
-  //   );
-
-  //   expect(state).toEqual(
-  //     expect.objectContaining({
-  //       loadingStatus: 'loaded',
-  //       error: null,
-  //       entities: { 1: { id: 1 } },
-  //     })
-  //   );
-
-  //   state = dlayoutReducer(
-  //     state,
-  //     fetchDlayout.rejected(new Error('Uh oh'), null, null)
-  //   );
-
-  //   expect(state).toEqual(
-  //     expect.objectContaining({
-  //       loadingStatus: 'error',
-  //       error: 'Uh oh',
-  //       entities: { 1: { id: 1 } },
-  //     })
-  //   );
-  // });
+  it('should handle incrementByAmount', () => {
+    const actual = counterReducer(initialState, incrementByAmount(2));
+    expect(actual.value).toEqual(5);
+  });
 });

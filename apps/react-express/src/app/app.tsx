@@ -17,9 +17,26 @@ import { Route, Routes, Link } from 'react-router-dom';
 import { CodelabListsDataAccess } from '@create-nx-workspace/codelab-lists/data-access';
 
 // import { dlayoutActions } from './features/dlayout/dlayout.slice'
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 import { Counter } from './features/counter/Counter';
+import { useAppSelector, useAppDispatch } from './hooks';
+
+import {
+  decrement,
+  increment,
+  incrementByAmount,
+  incrementAsync,
+  layoutAsync,
+  incrementIfOdd,
+  selectCount,
+  selectLayout
+} from './features/dlayout/dlayout.slice';
+
 export const App = () => {
+  const layout = useAppSelector(selectLayout);
+  const count = useAppSelector(selectCount);
+  console.log('layout: ', layout)
+  const dispatch = useAppDispatch();
   const [m, setMessage] = useState<Message>({ message: '' });
 
   useEffect(() => {
@@ -31,20 +48,20 @@ export const App = () => {
   // console.log('user', user)
   return (
     <>
-    <nav className="navbar navbar-default">
-      <div role="navigation" className="container-fluid">
-        <ul className="nav navbar-nav">
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/data-access">CodelabListsDataAccess</Link>
-          </li>
-          <li>
-            <Link to="/page-2">Page 2</Link>
-          </li>
-        </ul>
-      </div>
+      <nav className="navbar navbar-default">
+        <div role="navigation" className="container-fluid">
+          <ul className="nav navbar-nav">
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/data-access">CodelabListsDataAccess</Link>
+            </li>
+            <li>
+              <Link to="/page-2">Page 2</Link>
+            </li>
+          </ul>
+        </div>
       </nav>
       {/* <button onClick={() => dlayoutActions.add({id:0, sections:[], jsonData:[]})} >Add</button> */}
       <Routes>
@@ -70,6 +87,15 @@ export const App = () => {
       {/* END: routes */}
       <Badge bg="success">{m.message}</Badge>
       <h1>Welcome react-express!</h1>
+
+      <span>{count}</span>
+      <button
+        onClick={() => {
+          dispatch(layoutAsync(1));
+        }}
+      >
+        Layout
+      </button>
       <div style={{ textAlign: 'center' }}>
         <Counter />
         <ThreeColumnCard
@@ -98,20 +124,7 @@ export const App = () => {
               },
             },
           ]}
-          sections={[
-            {
-              title: 'Section Title',
-              fluid: true,
-              cols: ['4', '4', '4', '4', '4', '4'],
-              featureTypesArry: ['a', 'a', 'a'],
-            },
-            {
-              title: 'Section Title',
-              fluid: false,
-              cols: ['4', '4', '4', '4', '4', '4'],
-              featureTypesArry: ['a'],
-            },
-          ]}
+          sections={layout}
         />
         <FourColumnCard />
         {/* <Layout /> */}

@@ -1,179 +1,152 @@
-import {
-  createAsyncThunk,
-  createEntityAdapter,
-  createSelector,
-  createSlice,
-  EntityState,
-  PayloadAction,
-} from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState, AppThunk } from '../../store';
+import { fetchCount, fetchLayout } from './counterAPI';
 
-export const DLAYOUT_FEATURE_KEY = 'dlayout';
-
-/*
- * Update these interfaces according to your requirements.
- */
-export interface DlayoutEntity {
-  id: number;
+export interface CounterState {
+  value: number;
+  status: 'idle' | 'loading' | 'failed';
   jsonData:any[];
   sections:any[];
+
 }
 
-export interface DlayoutState extends EntityState<DlayoutEntity> {
-  loadingStatus: 'not loaded' | 'loading' | 'loaded' | 'error';
-  error: string;
-}
+const initialState: CounterState = {
+  value: 0,
+  status: 'idle',
+  jsonData:[
+    {
+      code: 'a',
+      componentType: 'CardPlaceholder',
+      props: {
+        title: 'CardPlaceholderProps',
+      },
+    },
+    {
+      code: '5',
+      componentType: 'ProductReviewCard',
+      props: {
+        title: 'I Love It! Five Stars',
+        rating: 5,
+      },
+    },
+    {
+      code: '4',
+      componentType: 'ProductReviewCard',
+      props: {
+        title: '4',
+        rating: 4,
+      },
+    },
+  ],
+  sections:[
 
-export const dlayoutAdapter = createEntityAdapter<DlayoutEntity>();
+    {
+      title: 'Section Title',
+      fluid: false,
+      cols: ['4', '4', '4', '4', '4', '4'],
+      featureTypesArry: ['a'],
+    },
 
-/**
- * Export an effect using createAsyncThunk from
- * the Redux Toolkit: https://redux-toolkit.js.org/api/createAsyncThunk
- *
- * e.g.
- * ```
- * import React, { useEffect } from 'react';
- * import { useDispatch } from 'react-redux';
- *
- * // ...
- *
- * const dispatch = useDispatch();
- * useEffect(() => {
- *   dispatch(fetchDlayout())
- * }, [dispatch]);
- * ```
- */
-export const fetchDlayout = createAsyncThunk(
-  'dlayout/fetchStatus',
-  async (_, thunkAPI) => {
-    /**
-     * Replace this with your custom fetch call.
-     * For example, `return myApi.getDlayouts()`;
-     * Right now we just return an empty array.
-     */
-    return Promise.resolve([]);
+    {
+      title: 'Section Title2',
+      fluid: false,
+      cols: ['4', '4', '4', '4', '4', '4'],
+      featureTypesArry: ['a'],
+    },
+  ]
+};
+
+// The function below is called a thunk and allows us to perform async logic. It
+// can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
+// will call the thunk with the `dispatch` function as the first argument. Async
+// code can then be executed and other actions can be dispatched. Thunks are
+// typically used to make async requests.
+export const incrementAsync = createAsyncThunk(
+  'counter/fetchCount',
+  async (amount: number) => {
+    const response = await fetchCount(amount);
+    // The value we return becomes the `fulfilled` action payload
+    return response.data;
   }
 );
 
-export const initialDlayoutState: DlayoutState = dlayoutAdapter.getInitialState(
-  {
-    jsonData: [
-      {
-        code: 'a',
-        componentType: 'CardPlaceholder',
-        props: {
-          title: 'CardPlaceholderProps',
-        },
-      },
-      {
-        code: 'p',
-        componentType: 'ProductPurchaseCard',
-        props: {
-          title: 'ProductPurchaseCard',
-        },
-      },
-      {
-        code: "5",
-        componentType: "ProductReviewCard",
-        props: {
-          title: "I Love It! Five Stars",
-          rating: 5,
-        },
-      },
-      
-    ],
-    sections: [
-      {
-        title: 'Section Title',
-        fluid: true,
-        cols: ['4', '4', '4', '4', '4', '4', '4'],
-        featureTypesArry: ['a','a','a'],
-      },
-      {
-        title: 'Section Title',
-        fluid: false,
-        cols: ['4', '4', '4', '4', '4', '4', '4'],
-        featureTypesArry: ['a','a','a'],
-      }
-    ],
-    loadingStatus: 'not loaded',
-    error: 'null',
+export const layoutAsync = createAsyncThunk(
+  'counter/fetchLayout',
+  async (amount: number) => {
+    const response = await fetchLayout(amount);
+    // The value we return becomes the `fulfilled` action payload
+    console.log('response.data: ', response.data)
+    return response.data;
   }
 );
 
-export const dlayoutSlice = createSlice({
-  name: DLAYOUT_FEATURE_KEY,
-  initialState: initialDlayoutState,
+export const counterSlice = createSlice({
+  name: 'counter',
+  initialState,
+  // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
-    add: dlayoutAdapter.addOne,
-    remove: dlayoutAdapter.removeOne,
-    // ...
+    increment: (state) => {
+      // Redux Toolkit allows us to write "mutating" logic in reducers. It
+      // doesn't actually mutate the state because it uses the Immer library,
+      // which detects changes to a "draft state" and produces a brand new
+      // immutable state based off those changes
+      state.value += 1;
+    },
+    decrement: (state) => {
+      state.value -= 1;
+    },
+    // Use the PayloadAction type to declare the contents of `action.payload`
+    incrementByAmount: (state, action: PayloadAction<number>) => {
+      state.value += action.payload;
+    },
   },
+  // The `extraReducers` field lets the slice handle actions defined elsewhere,
+  // including actions generated by createAsyncThunk or in other slices.
+  // extraReducers: (builder) => {
+  //   builder
+  //     .addCase(incrementAsync.pending, (state) => {
+  //       state.status = 'loading';
+  //     })
+  //     .addCase(incrementAsync.fulfilled, (state, action) => {
+  //       state.status = 'idle';
+  //       state.value += action.payload;
+  //     })
+  //     .addCase(incrementAsync.rejected, (state) => {
+  //       state.status = 'failed';
+  //     });
+  // },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchDlayout.pending, (state: DlayoutState) => {
-        state.loadingStatus = 'loading';
+      .addCase(layoutAsync.pending, (state) => {
+        state.status = 'loading';
       })
-      .addCase(
-        fetchDlayout.fulfilled,
-        (state: DlayoutState, action: PayloadAction<DlayoutEntity[]>) => {
-          dlayoutAdapter.setAll(state, action.payload);
-          state.loadingStatus = 'loaded';
-        }
-      )
-      .addCase(fetchDlayout.rejected, (state: DlayoutState, action) => {
-        state.loadingStatus = 'error';
-        state.error = 'action.error.message';
+      .addCase(layoutAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.sections = action.payload;
+      })
+      .addCase(layoutAsync.rejected, (state) => {
+        state.status = 'failed';
       });
   },
 });
 
-/*
- * Export reducer for store configuration.
- */
-export const dlayoutReducer = dlayoutSlice.reducer;
+export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 
-/*
- * Export action creators to be dispatched. For use with the `useDispatch` hook.
- *
- * e.g.
- * ```
- * import React, { useEffect } from 'react';
- * import { useDispatch } from 'react-redux';
- *
- * // ...
- *
- * const dispatch = useDispatch();
- * useEffect(() => {
- *   dispatch(dlayoutActions.add({ id: 1 }))
- * }, [dispatch]);
- * ```
- *
- * See: https://react-redux.js.org/next/api/hooks#usedispatch
- */
-export const dlayoutActions = dlayoutSlice.actions;
+// The function below is called a selector and allows us to select a value from
+// the state. Selectors can also be defined inline where they're used instead of
+// in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
+export const selectCount = (state: RootState) => state.counter.value;
+export const selectLayout = (state: RootState) => state.layout.sections;
 
-/*
- * Export selectors to query state. For use with the `useSelector` hook.
- *
- * e.g.
- * ```
- * import { useSelector } from 'react-redux';
- *
- * // ...
- *
- * const entities = useSelector(selectAllDlayout);
- * ```
- *
- * See: https://react-redux.js.org/next/api/hooks#useselector
- */
-const { selectAll, selectEntities } = dlayoutAdapter.getSelectors();
+// We can also write thunks by hand, which may contain both sync and async logic.
+// Here's an example of conditionally dispatching actions based on current state.
+export const incrementIfOdd =
+  (amount: number): AppThunk =>
+  (dispatch, getState) => {
+    const currentValue = selectCount(getState());
+    if (currentValue % 2 === 1) {
+      dispatch(incrementByAmount(amount));
+    }
+  };
 
-export const getDlayoutState = (rootState: any): DlayoutState =>
-  rootState[DLAYOUT_FEATURE_KEY];
-
-export const selectAllDlayout = createSelector(getDlayoutState, selectAll);
-
-export const selectDlayoutEntities = createSelector(
-  getDlayoutState,
-  selectEntities
-);
+export default counterSlice.reducer;

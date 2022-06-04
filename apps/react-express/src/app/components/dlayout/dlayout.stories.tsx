@@ -3,7 +3,7 @@ import { DLayout, DLayoutProps } from './dlayout';
 
 export default {
   component: DLayout,
-  title: 'DLayout',
+  title: 'Ui/DLayout',
 } as Meta;
 
 const Template: Story<DLayoutProps> = (args) => <DLayout {...args} />;

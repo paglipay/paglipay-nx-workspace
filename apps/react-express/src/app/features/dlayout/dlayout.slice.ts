@@ -14,6 +14,8 @@ export const DLAYOUT_FEATURE_KEY = 'dlayout';
  */
 export interface DlayoutEntity {
   id: number;
+  jsonData:any[];
+  sections:any[];
 }
 
 export interface DlayoutState extends EntityState<DlayoutEntity> {

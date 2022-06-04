@@ -16,8 +16,9 @@ import { Route, Routes, Link } from 'react-router-dom';
 
 import { CodelabListsDataAccess } from '@create-nx-workspace/codelab-lists/data-access';
 
-import { dlayoutActions } from './store/features/dlayout/dlayout.slice'
+// import { dlayoutActions } from './features/dlayout/dlayout.slice'
 import { useSelector } from "react-redux";
+import { Counter } from './features/counter/Counter';
 export const App = () => {
   const [m, setMessage] = useState<Message>({ message: '' });
 
@@ -45,7 +46,7 @@ export const App = () => {
         </ul>
       </div>
       </nav>
-      <button onClick={() => dlayoutActions.add({id:0, sections:[], jsonData:[]})} >Add</button>
+      {/* <button onClick={() => dlayoutActions.add({id:0, sections:[], jsonData:[]})} >Add</button> */}
       <Routes>
         <Route
           path="/"
@@ -70,6 +71,7 @@ export const App = () => {
       <Badge bg="success">{m.message}</Badge>
       <h1>Welcome react-express!</h1>
       <div style={{ textAlign: 'center' }}>
+        <Counter />
         <ThreeColumnCard
           jsonData={[
             {

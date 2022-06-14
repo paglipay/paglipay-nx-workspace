@@ -8,7 +8,7 @@ describe('react-express', () => {
     cy.login('my-email@something.com', 'myPassword');
 
     // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome react-express');
+    getGreeting().contains('Welcome react-express!');
   });
   it('should display Connected to api!', () => {
     // Function helper example, see `../support/app.po.ts` file

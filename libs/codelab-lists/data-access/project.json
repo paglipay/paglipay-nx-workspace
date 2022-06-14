@@ -1,0 +1,25 @@
+{
+  "$schema": "..\\..\\..\\node_modules\\nx\\schemas\\project-schema.json",
+  "sourceRoot": "libs/codelab-lists/data-access/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/codelab-lists/data-access/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/codelab-lists/data-access"],
+      "options": {
+        "jestConfig": "libs/codelab-lists/data-access/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

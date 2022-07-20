@@ -40,10 +40,10 @@ export function ProductCarousel(props: ProductCrouselProps) {
                         <Image
                           // onClick={() => setCurrentPic(randNum + i)}
                           key={`im2-${i}`}
-                          src={`https://source.unsplash.com/1600x600/?${
+                          src={`https://source.unsplash.com/1600x400/?${
                             pics[randNum + i]
                           }`}
-                          alt={`https://source.unsplash.com/1600x600/?${
+                          alt={`https://source.unsplash.com/1600x400/?${
                             pics[randNum + i]
                           }`}
                         />

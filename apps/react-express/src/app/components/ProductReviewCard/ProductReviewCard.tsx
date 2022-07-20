@@ -1,4 +1,3 @@
-import React from 'react'
 import { AiFillStar } from "react-icons/ai";
 import { Image } from "react-bootstrap";
 import logo from '../../../assets/man.jpg';

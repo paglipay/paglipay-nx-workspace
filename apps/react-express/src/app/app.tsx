@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Message } from '@create-nx-workspace/api-interfaces';
-import ProductPurchaseCard from './product-purchase-card/product-purchase-card';
-import AggrigateRating from './components/aggrigate-rating/aggrigate-rating';
-import ProductCarousel from './components/product-crousel/product-crousel';
-import ProductImages from './components/product-images/product-images';
-import ProductReviewCard from './components/ProductReviewCard/ProductReviewCard';
-import DLayout from './components/dlayout/dlayout';
-import LayoutRender from './components/layout-render/layout-render';
-import { Container } from 'react-bootstrap';
-import Layout from './components/layout/layout';
+// import ProductPurchaseCard from './product-purchase-card/product-purchase-card';
+// import AggrigateRating from './components/aggrigate-rating/aggrigate-rating';
+// import ProductCarousel from './components/product-crousel/product-crousel';
+// import ProductImages from './components/product-images/product-images';
+// import ProductReviewCard from './components/ProductReviewCard/ProductReviewCard';
+// import DLayout from './components/dlayout/dlayout';
+// import LayoutRender from './components/layout-render/layout-render';
+// import { Container } from 'react-bootstrap';
+// import Layout from './components/layout/layout';
 import ThreeColumnCard from './components/three-column-card/three-column-card';
 import FourColumnCard from './components/four-column-card/four-column-card';
 import { Badge } from 'react-bootstrap';
@@ -17,7 +17,7 @@ import { Route, Routes, Link } from 'react-router-dom';
 import { CodelabListsDataAccess } from '@create-nx-workspace/codelab-lists/data-access';
 
 // import { dlayoutActions } from './features/dlayout/dlayout.slice'
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 import { Counter } from './features/counter/Counter';
 export const App = () => {
   const [m, setMessage] = useState<Message>({ message: '' });
@@ -31,20 +31,20 @@ export const App = () => {
   // console.log('user', user)
   return (
     <>
-    <nav className="navbar navbar-default">
-      <div role="navigation" className="container-fluid">
-        <ul className="nav navbar-nav">
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/data-access">CodelabListsDataAccess</Link>
-          </li>
-          <li>
-            <Link to="/page-2">Page 2</Link>
-          </li>
-        </ul>
-      </div>
+      <nav className="navbar navbar-default">
+        <div role="navigation" className="container-fluid">
+          <ul className="nav navbar-nav">
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/data-access">CodelabListsDataAccess</Link>
+            </li>
+            <li>
+              <Link to="/page-2">Page 2</Link>
+            </li>
+          </ul>
+        </div>
       </nav>
       {/* <button onClick={() => dlayoutActions.add({id:0, sections:[], jsonData:[]})} >Add</button> */}
       <Routes>
@@ -100,16 +100,16 @@ export const App = () => {
           ]}
           sections={[
             {
-              title: 'Section Title',
+              title: 'Section Title1',
               fluid: true,
               cols: ['4', '4', '4', '4', '4', '4'],
-              featureTypesArry: ['a', 'a', 'a'],
+              featureTypesArry: ['a', '4', 'a'],
             },
             {
-              title: 'Section Title',
+              title: 'Section Title2',
               fluid: false,
               cols: ['4', '4', '4', '4', '4', '4'],
-              featureTypesArry: ['a'],
+              featureTypesArry: ['5', 'a', 'a'],
             },
           ]}
         />

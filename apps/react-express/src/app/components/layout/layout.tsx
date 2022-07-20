@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import React, { lazy } from 'react'
-import ProductReviewCard from '../../product-review-card/product-review-card';
-import CardPlaceholder from '../card-placeholder/card-placeholder';
+// import React, { lazy } from 'react'
+// import ProductReviewCard from '../../product-review-card/product-review-card';
+// import CardPlaceholder from '../card-placeholder/card-placeholder';
 import LayoutRender from '../layout-render/layout-render';
-import styles from './layout.module.css';
+// import styles from './layout.module.css';
 
 /* eslint-disable-next-line */
 export interface LayoutProps {
@@ -62,6 +62,7 @@ export function Layout(props: LayoutProps) {
     // ProductImages: require('./ProductImages').default,
     // ReviewCrousel: require('./ReviewCrousel').default,
     // ProductCrousel: require('./ProductCrousel').default,
+    ProductCrousel: require('../product-crousel/product-crousel').default,
     // UserCard: require('./ui/components/Home/UserCard').default,
     // FeatureForm: require('./ui/components/Layout/FeatureForm').default,
     // ColsForm: require('./ui/components/Layout/ColsForm').default,
@@ -71,7 +72,7 @@ export function Layout(props: LayoutProps) {
 
   return (
     <>
-      {props.sections.map((e: any, i: any) => (
+      {props.sections.map((e: any, i: number) => (
         <div key={`div-${i}`}>
           <section
             key={`prl-sec-${i}`}

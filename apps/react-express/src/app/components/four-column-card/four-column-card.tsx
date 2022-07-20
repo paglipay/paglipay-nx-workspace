@@ -16,6 +16,13 @@ export function FourColumnCard(props: FourColumnCardProps) {
           },
         },
         {
+          code: 'k',
+          componentType: 'ProductCrousel',
+          props: {
+            cols: [12],
+          },
+        },
+        {
           code: '5',
           componentType: 'ProductReviewCard',
           props: {
@@ -30,20 +37,20 @@ export function FourColumnCard(props: FourColumnCardProps) {
             title: '4',
             rating: 4,
           },
-        }
+        },
       ]}
       sections={[
         {
           title: 'Section Title',
           fluid: true,
-          cols: ['3','3','3','3'],
+          cols: ['3', '3', '3', '3'],
           featureTypesArry: ['a', 'a', 'a', 'a'],
         },
         {
           title: 'Section Title',
           fluid: false,
           cols: ['4', '4', '4', '4', '4', '4'],
-          featureTypesArry: ['a'],
+          featureTypesArry: ['a', 'a'],
         },
       ]}
     />

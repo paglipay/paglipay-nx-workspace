@@ -12,12 +12,19 @@ export function ThreeColumnCard(props: ThreeColumnCardProps) {
     <Layout
       jsonData={[
         {
-          code: 'a',
-          componentType: 'CardPlaceholder',
+          code: "a",
+          componentType: "AggrigateRating",
           props: {
-            title: 'CardPlaceholderProps',
+            title: "AggrigateRating",
           },
         },
+        // {
+        //   code: 'a',
+        //   componentType: 'CardPlaceholder',
+        //   props: {
+        //     title: 'CardPlaceholderProps',
+        //   },
+        // },
         {
           code: 'k',
           componentType: 'ProductCrousel',
@@ -36,6 +43,21 @@ export function ThreeColumnCard(props: ThreeColumnCardProps) {
         {
           code: 'o',
           componentType: 'ProductPurchaseCard',
+          props: {
+            product: { id: '101', price: 11.99, description: 'thing2' },
+            title: 'My Product 2',
+          },
+        },
+        {
+          code: 'i',
+          componentType: 'ProductImages',
+          // props: {
+          //     title: "one"
+          // },
+        },
+        {
+          code: 'c',
+          componentType: 'Cart',
           props: {
             product: { id: '101', price: 11.99, description: 'thing2' },
             title: 'My Product 2',
@@ -74,16 +96,16 @@ export function ThreeColumnCard(props: ThreeColumnCardProps) {
           featureTypesArry: ['k'],
         },
         {
-          title: 'Section One',
-          fluid: false,
-          cols: ['4', '4', '4', '4', '4', '4'],
-          featureTypesArry: ['4', '5', '3'],
+          title: "Section Title",
+          fluid: true,
+          cols: ["3","3","3","3","3","3","3","3","3","3","3","3"],
+          featureTypesArry: ["i","i","i","i","5","5","5","a",'p', 'p', 'o', 'c'],
         },
         {
           title: 'Section Two',
           fluid: false,
           cols: ['4', '4', '4', '4', '4', '4'],
-          featureTypesArry: ['p', 'o'],
+          featureTypesArry: ['i', 'i', 'i', 'p', 'o', 'c'],
         },
       ]}
     />

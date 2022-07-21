@@ -31,7 +31,7 @@ export const App = () => {
   // console.log('user', user)
   return (
     <>
-      <nav className="navbar navbar-default">
+      {/* <nav className="navbar navbar-default">
         <div role="navigation" className="container-fluid">
           <ul className="nav navbar-nav">
             <li>
@@ -45,9 +45,9 @@ export const App = () => {
             </li>
           </ul>
         </div>
-      </nav>
+      </nav> */}
       {/* <button onClick={() => dlayoutActions.add({id:0, sections:[], jsonData:[]})} >Add</button> */}
-      <Routes>
+      {/* <Routes>
         <Route
           path="/"
           element={
@@ -66,10 +66,10 @@ export const App = () => {
             </div>
           }
         />
-      </Routes>
+      </Routes> */}
       {/* END: routes */}
       <Badge bg="success">{m.message}</Badge>
-      <h1>Welcome react-express!</h1>
+      {/* <h1>Welcome react-express!</h1> */}
       <div style={{ textAlign: 'center' }}>
         {/* <Counter /> */}
         <ThreeColumnCard

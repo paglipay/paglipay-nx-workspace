@@ -49,8 +49,8 @@ export function LayoutRender(props: LayoutRenderProps) {
     {}
   );
 
-  console.log('props.jsonData: ', props.jsonData)
-  console.log('res: ', res)
+  // console.log('props.jsonData: ', props.jsonData)
+  // console.log('res: ', res)
   // const features = [
   //   React.createElement(
   //     // eslint-disable-next-line @typescript-eslint/no-var-requires

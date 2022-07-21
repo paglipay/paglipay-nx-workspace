@@ -25,29 +25,31 @@ export function Cart(props: CartProps) {
   const cart = useAppSelector(selectCart);
   const dispatch = useAppDispatch();
   return (
-    <Card style={{ textAlign: 'left', padding:'10px' }}>
-      <span>
-        <h1>Total: ${`${cart}`}</h1>
-      </span>
-      <span style={{ display: 'inline-flex', verticalAlign: 'middle' }}>
-        <h5>Unknown</h5>
-      </span>
-      <br />
-      <Button onClick={() => console.log('Check Out: ', props.product)}>
-        Check Out
-      </Button>
-      <br />
-      <br />
-      <h5>
-        <strong>{props.title}</strong>
-      </h5>
-      <p style={{ fontSize: 12 }}>
-        Reviewed in the United States on April 29, 2021
+    <Card style={{ textAlign: 'left', padding: '10px'}}>
+      <Card.Body>
+        <span>
+          <h1>Total: ${`${cart}`}</h1>
+        </span>
+        <span style={{ display: 'inline-flex', verticalAlign: 'middle' }}>
+          <h5>Unknown</h5>
+        </span>
         <br />
-        Ships from DartCart
-      </p>
-      <p>Return Policy: Eligible for Return, Refund or Replacement</p>
-      <p>Support: Free DartCart tech</p>
+        <Button onClick={() => dispatch(incrementAsync(props.product))}>
+          Check Out
+        </Button>
+        <br />
+        <br />
+        <h5>
+          <strong>{props.title}</strong>
+        </h5>
+        <p style={{ fontSize: 12 }}>
+          Reviewed in the United States on April 29, 2021
+          <br />
+          Ships from DartCart
+        </p>
+        <p>Return Policy: Eligible for Return, Refund or Replacement</p>
+        <p>Support: Free DartCart tech</p>
+      </Card.Body>
     </Card>
   );
 }

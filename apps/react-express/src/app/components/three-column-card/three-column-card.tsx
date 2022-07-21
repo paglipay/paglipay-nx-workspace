@@ -18,13 +18,13 @@ export function ThreeColumnCard(props: ThreeColumnCardProps) {
             title: "AggrigateRating",
           },
         },
-        // {
-        //   code: 'a',
-        //   componentType: 'CardPlaceholder',
-        //   props: {
-        //     title: 'CardPlaceholderProps',
-        //   },
-        // },
+        {
+          code: 'd',
+          componentType: 'DFormik',
+          props: {
+            title: 'CardPlaceholderProps',
+          },
+        },
         {
           code: 'k',
           componentType: 'ProductCrousel',
@@ -99,7 +99,7 @@ export function ThreeColumnCard(props: ThreeColumnCardProps) {
           title: "Section Title",
           fluid: true,
           cols: ["3","3","3","3","3","3","3","3","3","3","3","3"],
-          featureTypesArry: ["i","i","i","i","5","5","5","a",'p', 'p', 'o', 'c'],
+          featureTypesArry: ["i","i","i","d","5","5","5","a",'p', 'p', 'o', 'c'],
         },
         {
           title: 'Section Two',

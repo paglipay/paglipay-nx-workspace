@@ -23,6 +23,7 @@ export const incrementAsync = createAsyncThunk(
   'cart/fetchCart',
   async (amount: number) => {
     const response = await fetchCart(amount);
+    console.log('response.data: ', response.data)
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
@@ -61,7 +62,7 @@ export const cartSlice = createSlice({
       })
       .addCase(incrementAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.value += action.payload;
+        state.value = action.payload;
       })
       .addCase(incrementAsync.rejected, (state) => {
         state.status = 'failed';

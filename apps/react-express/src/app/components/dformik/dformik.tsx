@@ -1,12 +1,13 @@
 import { useState, useRef } from 'react';
 import styles from './dformik.module.css';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
+// import * as Yup from 'yup';
 import { Form, Card, Button } from 'react-bootstrap';
 /* eslint-disable-next-line */
 export interface DFormikProps {
   title: string;
   fieldList: any[];
+  validationSchema: any;
 }
 DFormik.defaultProps = {
   fieldList: [],
@@ -15,8 +16,8 @@ export function DFormik(props: DFormikProps) {
   // const fieldList = props.fieldList;
 
   const [fieldList, setFieldList] = useState(props.fieldList);
-  const inputElement = useRef();
-  const inputElement2 = useRef();
+  // const inputElement = useRef();
+  // const inputElement2 = useRef();
   // const initialValues = {
   //   firstName: '',
   //   lastName: '',
@@ -28,19 +29,21 @@ export function DFormik(props: DFormikProps) {
     return acc;
   }, {});
 
+  const validationSchema = props.validationSchema;
+
   console.log('initialValues:', initialValues);
 
   const formik = useFormik({
     initialValues,
+    validationSchema,
     // validationSchema: Yup.object({
-    //   name: Yup.string().max(15, 'Must be 15 characters or less').required(),
     //   firstName: Yup.string()
     //     .max(15, 'Must be 15 characters or less')
     //     .required(),
-    // lastName: Yup.string()
-    //   .max(15, 'Must be 15 characters or less')
-    //   .required(),
-    // email: Yup.string().required(),
+    //   lastName: Yup.string()
+    //     .max(15, 'Must be 15 characters or less')
+    //     .required(),
+    //   email: Yup.string().required(),
     // }),
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
@@ -66,6 +69,7 @@ export function DFormik(props: DFormikProps) {
     t: e.type,
     f: formik.values[e.name],
     errors: formik.errors[e.name],
+    touched: formik.touched[e.name],
   }));
 
   console.log('formikObjs:', formikObjs);
@@ -74,7 +78,7 @@ export function DFormik(props: DFormikProps) {
     <Card className={styles['container']}>
       <Card.Body style={{ textAlign: 'left', padding: '10px', margin: '10px' }}>
         <h2>Welcome to DFormik!</h2>
-        <input type="text" name="name" ref={inputElement} />
+        {/* <input type="text" name="name" ref={inputElement} />
         <input type="text" name="type" ref={inputElement2} />
         <Button
           onClick={() =>
@@ -88,14 +92,17 @@ export function DFormik(props: DFormikProps) {
           }
         >
           Add
-        </Button>
+        </Button> */}
         <Form onSubmit={formik.handleSubmit}>
           {formikObjs.map((e) => (
-            <Form.Group className="mb-3" controlId={`formBasic${e.n}`}>
+            <Form.Group
+              className="mb-3"
+              // controlId={`formBasic${e.n}`}
+            >
               <Form.Label>{`${e.n}`}</Form.Label>
               {e.t === 'textarea' ? (
                 <Form.Control
-                  // id={`${e.n}`}
+                  id={`${e.n}`}
                   name={`${e.n}`}
                   as="textarea"
                   placeholder="Leave a comment here"
@@ -106,7 +113,7 @@ export function DFormik(props: DFormikProps) {
                 />
               ) : (
                 <Form.Control
-                  // id={`${e.n}`}
+                  id={`${e.n}`}
                   name={`${e.n}`}
                   type={e.n === 'email' ? 'email' : 'text'}
                   placeholder={`Enter ${e.n}`}
@@ -115,8 +122,10 @@ export function DFormik(props: DFormikProps) {
                   onBlur={formik.handleBlur}
                 />
               )}
-              {e.errors ? (
-                <Form.Text className="text-muted">{`e.errors`}</Form.Text>
+              {e.touched && e.errors ? (
+                <Form.Text className="text-muted">
+                  {JSON.stringify(e)}
+                </Form.Text>
               ) : null}
             </Form.Group>
           ))}

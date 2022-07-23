@@ -1,5 +1,6 @@
 import Layout from '../layout/layout';
 import styles from './three-column-card.module.css';
+import * as Yup from 'yup';
 
 /* eslint-disable-next-line */
 export interface ThreeColumnCardProps {
@@ -8,6 +9,13 @@ export interface ThreeColumnCardProps {
 }
 
 export function ThreeColumnCard(props: ThreeColumnCardProps) {
+
+  const validationSchema = Yup.object({
+    firstName: Yup.string().max(15, 'Must be 15 characters or less').required(),
+    lastName: Yup.string().max(15, 'Must be 15 characters or less').required(),
+    email: Yup.string().required(),
+  });
+
   return (
     <Layout
       jsonData={[
@@ -23,6 +31,7 @@ export function ThreeColumnCard(props: ThreeColumnCardProps) {
           componentType: 'DFormik',
           props: {
             title: 'CardPlaceholderProps',
+            validationSchema,
             fieldList: [
               { name: 'firstName', type: 'text' },
               { name: 'lastName', type: 'text' },
@@ -30,18 +39,18 @@ export function ThreeColumnCard(props: ThreeColumnCardProps) {
             ],
           },
         },
-        {
-          code: 'd2',
-          componentType: 'DFormik',
-          props: {
-            title: 'CardPlaceholderProps',
-            fieldList: [
-              { name: 'code', type: 'text' },
-              { name: 'componentType', type: 'text' },
-              { name: 'props', type: 'text' },
-            ],
-          },
-        },
+        // {
+        //   code: 'd2',
+        //   componentType: 'DFormik',
+        //   props: {
+        //     title: 'CardPlaceholderProps',
+        //     fieldList: [
+        //       { name: 'code', type: 'text' },
+        //       { name: 'componentType', type: 'text' },
+        //       { name: 'props', type: 'text' },
+        //     ],
+        //   },
+        // },
         {
           code: 'k',
           componentType: 'ProductCrousel',
@@ -119,7 +128,7 @@ export function ThreeColumnCard(props: ThreeColumnCardProps) {
           featureTypesArry: [
             'i',
             'i',
-            'd2',
+            'i',
             'd',
             '5',
             '5',

@@ -1,3 +1,4 @@
+import { useState, useRef } from 'react';
 import styles from './dformik.module.css';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -6,8 +7,13 @@ import { Form, Card, Button } from 'react-bootstrap';
 export interface DFormikProps {}
 
 export function DFormik(props: DFormikProps) {
-  const fieldList = ['firstName', 'lastName', 'email'];
-
+  const [fieldList, setFieldList] = useState([
+    // 'firstName',
+    // 'lastName',
+    // 'email',
+  ]);
+  const inputElement = useRef();
+  const inputElement2 = useRef();
   // const initialValues = {
   //   firstName: '',
   //   lastName: '',
@@ -15,7 +21,7 @@ export function DFormik(props: DFormikProps) {
   // };
 
   const initialValues = fieldList.reduce((acc: any, curr: any, i: any) => {
-    acc[curr] = '';
+    acc[curr.name] = '';
     return acc;
   }, {});
 
@@ -24,13 +30,14 @@ export function DFormik(props: DFormikProps) {
   const formik = useFormik({
     initialValues,
     // validationSchema: Yup.object({
+    //   name: Yup.string().max(15, 'Must be 15 characters or less').required(),
     //   firstName: Yup.string()
     //     .max(15, 'Must be 15 characters or less')
     //     .required(),
-    //   lastName: Yup.string()
-    //     .max(15, 'Must be 15 characters or less')
-    //     .required(),
-    //   email: Yup.string().max(15, 'Must be 15 characters or less').required(),
+    // lastName: Yup.string()
+    //   .max(15, 'Must be 15 characters or less')
+    //   .required(),
+    // email: Yup.string().required(),
     // }),
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
@@ -52,9 +59,10 @@ export function DFormik(props: DFormikProps) {
   // ];
 
   const formikObjs = fieldList.map((e) => ({
-    n: e,
-    f: formik.values[e],
-    errors: formik.errors[e],
+    n: e.name,
+    t: e.type,
+    f: formik.values[e.name],
+    errors: formik.errors[e.name],
   }));
 
   console.log('formikObjs:', formikObjs);
@@ -63,30 +71,55 @@ export function DFormik(props: DFormikProps) {
     <Card className={styles['container']}>
       <Card.Body style={{ textAlign: 'left', padding: '10px', margin: '10px' }}>
         <h2>Welcome to DFormik!</h2>
+        <input type="text" name="name" ref={inputElement} />
+        <input type="text" name="type" ref={inputElement2} />
+        <Button
+          onClick={() =>
+            setFieldList([
+              ...fieldList,
+              {
+                name: inputElement.current.value,
+                type: inputElement2.current.value,
+              },
+            ])
+          }
+        >
+          Add
+        </Button>
         <Form onSubmit={formik.handleSubmit}>
           {formikObjs.map((e) => (
             <Form.Group className="mb-3" controlId={`formBasic${e.n}`}>
               <Form.Label>{`${e.n}`}</Form.Label>
-              <Form.Control
-                // id={`${e.n}`}
-                name={`${e.n}`}
-                type={e.n === 'email' ? 'email' : 'text'}
-                placeholder={`Enter ${e.n}`}
-                onChange={formik.handleChange}
-                value={e.f}
-                onBlur={formik.handleBlur}
-              />
+              {e.t === 'textarea' ? (
+                <Form.Control
+                  // id={`${e.n}`}
+                  name={`${e.n}`}
+                  as="textarea"
+                  placeholder="Leave a comment here"
+                  style={{ height: '100px' }}
+                  onChange={formik.handleChange}
+                  value={e.f}
+                  onBlur={formik.handleBlur}
+                />
+              ) : (
+                <Form.Control
+                  // id={`${e.n}`}
+                  name={`${e.n}`}
+                  type={e.n === 'email' ? 'email' : 'text'}
+                  placeholder={`Enter ${e.n}`}
+                  onChange={formik.handleChange}
+                  value={e.f}
+                  onBlur={formik.handleBlur}
+                />
+              )}
               {e.errors ? (
-                <Form.Text className="text-muted">{e.errors}</Form.Text>
+                <Form.Text className="text-muted">{`e.errors`}</Form.Text>
               ) : null}
             </Form.Group>
           ))}
 
-          {/* <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
-          </Form.Group> */}
           <Button type="submit">Send</Button>
+
           {/* <label htmlFor="firstName">First Name</label>
           <input
             id="firstName"

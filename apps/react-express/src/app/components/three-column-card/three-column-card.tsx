@@ -9,13 +9,6 @@ export interface ThreeColumnCardProps {
 }
 
 export function ThreeColumnCard(props: ThreeColumnCardProps) {
-
-  const validationSchema = Yup.object({
-    firstName: Yup.string().max(15, 'Must be 15 characters or less').required(),
-    lastName: Yup.string().max(15, 'Must be 15 characters or less').required(),
-    email: Yup.string().required(),
-  });
-
   return (
     <Layout
       jsonData={[
@@ -31,26 +24,48 @@ export function ThreeColumnCard(props: ThreeColumnCardProps) {
           componentType: 'DFormik',
           props: {
             title: 'CardPlaceholderProps',
-            validationSchema,
+            validationSchema: Yup.object({
+              firstName: Yup.string()
+                .max(15, 'Must be 15 characters or less')
+                .required(),
+              lastName: Yup.string()
+                .max(15, 'Must be 15 characters or less')
+                .required(),
+              email: Yup.string().required(),
+            }),
             fieldList: [
-              { name: 'firstName', type: 'text' },
-              { name: 'lastName', type: 'text' },
-              { name: 'email', type: 'text' },
+              {
+                name: 'firstName',
+                type: 'text',
+              },
+              {
+                name: 'lastName',
+                type: 'text',
+              },
+              {
+                name: 'email',
+                type: 'text',
+              },
             ],
           },
         },
-        // {
-        //   code: 'd2',
-        //   componentType: 'DFormik',
-        //   props: {
-        //     title: 'CardPlaceholderProps',
-        //     fieldList: [
-        //       { name: 'code', type: 'text' },
-        //       { name: 'componentType', type: 'text' },
-        //       { name: 'props', type: 'text' },
-        //     ],
-        //   },
-        // },
+        {
+          code: 'd2',
+          componentType: 'DFormik',
+          props: {
+            title: 'CardPlaceholderProps',
+            validationSchema: Yup.object({
+              code: Yup.string().required(),
+              componentType: Yup.string().required(),
+              props: Yup.string().required(),
+            }),
+            fieldList: [
+              { name: 'code', type: 'text' },
+              { name: 'componentType', type: 'text' },
+              { name: 'props', type: 'text' },
+            ],
+          },
+        },
         {
           code: 'k',
           componentType: 'ProductCrousel',
@@ -128,7 +143,7 @@ export function ThreeColumnCard(props: ThreeColumnCardProps) {
           featureTypesArry: [
             'i',
             'i',
-            'i',
+            'd2',
             'd',
             '5',
             '5',

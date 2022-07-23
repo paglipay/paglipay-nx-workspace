@@ -12,10 +12,10 @@ export function ThreeColumnCard(props: ThreeColumnCardProps) {
     <Layout
       jsonData={[
         {
-          code: "a",
-          componentType: "AggrigateRating",
+          code: 'a',
+          componentType: 'AggrigateRating',
           props: {
-            title: "AggrigateRating",
+            title: 'AggrigateRating',
           },
         },
         {
@@ -23,6 +23,23 @@ export function ThreeColumnCard(props: ThreeColumnCardProps) {
           componentType: 'DFormik',
           props: {
             title: 'CardPlaceholderProps',
+            fieldList: [
+              { name: 'firstName', type: 'text' },
+              { name: 'lastName', type: 'text' },
+              { name: 'email', type: 'text' },
+            ],
+          },
+        },
+        {
+          code: 'd2',
+          componentType: 'DFormik',
+          props: {
+            title: 'CardPlaceholderProps',
+            fieldList: [
+              { name: 'code', type: 'text' },
+              { name: 'componentType', type: 'text' },
+              { name: 'props', type: 'text' },
+            ],
           },
         },
         {
@@ -96,10 +113,23 @@ export function ThreeColumnCard(props: ThreeColumnCardProps) {
           featureTypesArry: ['k'],
         },
         {
-          title: "Section Title",
+          title: 'Section Title',
           fluid: true,
-          cols: ["3","3","3","3","3","3","3","3","3","3","3","3"],
-          featureTypesArry: ["i","i","i","d","5","5","5","a",'p', 'p', 'o', 'c'],
+          cols: ['3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3'],
+          featureTypesArry: [
+            'i',
+            'i',
+            'd2',
+            'd',
+            '5',
+            '5',
+            '5',
+            'a',
+            'p',
+            'p',
+            'o',
+            'c',
+          ],
         },
         {
           title: 'Section Two',

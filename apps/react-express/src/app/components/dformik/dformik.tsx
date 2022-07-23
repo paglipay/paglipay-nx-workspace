@@ -4,14 +4,17 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Form, Card, Button } from 'react-bootstrap';
 /* eslint-disable-next-line */
-export interface DFormikProps {}
-
+export interface DFormikProps {
+  title: string;
+  fieldList: any[];
+}
+DFormik.defaultProps = {
+  fieldList: [],
+};
 export function DFormik(props: DFormikProps) {
-  const [fieldList, setFieldList] = useState([
-    // 'firstName',
-    // 'lastName',
-    // 'email',
-  ]);
+  // const fieldList = props.fieldList;
+
+  const [fieldList, setFieldList] = useState(props.fieldList);
   const inputElement = useRef();
   const inputElement2 = useRef();
   // const initialValues = {

@@ -3,6 +3,8 @@ import styles from './dformik.module.css';
 import { useFormik } from 'formik';
 // import * as Yup from 'yup';
 import { Form, Card, Button } from 'react-bootstrap';
+import { useAppDispatch } from '../../hooks';
+import { add } from '../../features/dlayout/dlayoutSlice';
 /* eslint-disable-next-line */
 export interface DFormikProps {
   title: string;
@@ -15,14 +17,8 @@ DFormik.defaultProps = {
 export function DFormik(props: DFormikProps) {
   // const fieldList = props.fieldList;
 
+  const dispatch = useAppDispatch();
   const [fieldList, setFieldList] = useState(props.fieldList);
-  // const inputElement = useRef();
-  // const inputElement2 = useRef();
-  // const initialValues = {
-  //   firstName: '',
-  //   lastName: '',
-  //   email: '',
-  // };
 
   const initialValues = fieldList.reduce((acc: any, curr: any, i: any) => {
     acc[curr.name] = '';
@@ -36,16 +32,8 @@ export function DFormik(props: DFormikProps) {
   const formik = useFormik({
     initialValues,
     validationSchema,
-    // validationSchema: Yup.object({
-    //   firstName: Yup.string()
-    //     .max(15, 'Must be 15 characters or less')
-    //     .required(),
-    //   lastName: Yup.string()
-    //     .max(15, 'Must be 15 characters or less')
-    //     .required(),
-    //   email: Yup.string().required(),
-    // }),
     onSubmit: (values) => {
+      dispatch(add(values));
       alert(JSON.stringify(values, null, 2));
     },
   });
@@ -78,21 +66,6 @@ export function DFormik(props: DFormikProps) {
     <Card className={styles['container']}>
       <Card.Body style={{ textAlign: 'left', padding: '10px', margin: '10px' }}>
         <h2>Welcome to DFormik!</h2>
-        {/* <input type="text" name="name" ref={inputElement} />
-        <input type="text" name="type" ref={inputElement2} />
-        <Button
-          onClick={() =>
-            setFieldList([
-              ...fieldList,
-              {
-                name: inputElement.current.value,
-                type: inputElement2.current.value,
-              },
-            ])
-          }
-        >
-          Add
-        </Button> */}
         <Form onSubmit={formik.handleSubmit}>
           {formikObjs.map((e) => (
             <Form.Group
@@ -134,35 +107,6 @@ export function DFormik(props: DFormikProps) {
           ))}
 
           <Button type="submit">Send</Button>
-
-          {/* <label htmlFor="firstName">First Name</label>
-          <input
-            id="firstName"
-            name="firstName"
-            type="text"
-            onChange={formik.handleChange}
-            value={formik.values.firstName}
-          />
-
-          <label htmlFor="lastName">Last Name</label>
-          <input
-            id="lastName"
-            name="lastName"
-            type="text"
-            onChange={formik.handleChange}
-            value={formik.values.lastName}
-          />
-
-          <label htmlFor="email">Email Address</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            onChange={formik.handleChange}
-            value={formik.values.email}
-          /> */}
-
-          {/* <button type="submit">Submit</button> */}
         </Form>
       </Card.Body>
     </Card>

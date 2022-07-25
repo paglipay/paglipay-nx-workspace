@@ -14,6 +14,13 @@ export interface dlayoutState {
 const initialState: dlayoutState = {
   jsonData: [
     {
+      code: 'dt',
+      componentType: 'DTable',
+      props: {
+        title: 'DTable',
+      },
+    },
+    {
       code: 'ph',
       componentType: 'CardPlaceholder',
       props: {
@@ -168,7 +175,7 @@ const initialState: dlayoutState = {
       cols: ['3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3'],
       featureTypesArry: [
         'i',
-        'i',
+        'dt',
         'd2',
         'd',
         '5',
@@ -204,8 +211,14 @@ export const dlayoutSlice = createSlice({
   name: 'dlayout',
   initialState: initialState,
   reducers: {
-    add: (state) => {
-      console.log('add: ', state);
+    add: (state, action: PayloadAction<any>) => {
+      console.log('add action: ', action);
+      state.sections.push({
+        title: action.payload.title,
+        fluid: action.payload.fluid === 'true' ? true : false,
+        cols: action.payload.cols.split('-'),
+        featureTypesArry: action.payload.featureTypesArry.split('-'),
+      });
     },
     remove: (state) => {
       console.log('add: ', state);

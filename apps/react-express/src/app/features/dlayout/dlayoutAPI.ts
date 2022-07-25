@@ -9,6 +9,13 @@ export async function fetchDLayout(amount = 1) {
             data: {
               jsonData: [
                 {
+                  code: 'dt',
+                  componentType: 'DTable',
+                  props: {
+                    title: 'DTable',
+                  },
+                },
+                {
                   code: 'a',
                   componentType: 'AggrigateRating',
                   props: {
@@ -59,6 +66,25 @@ export async function fetchDLayout(amount = 1) {
                       { name: 'code', type: 'text' },
                       { name: 'componentType', type: 'text' },
                       { name: 'props', type: 'text' },
+                    ],
+                  },
+                },
+                {
+                  code: 'd3',
+                  componentType: 'DFormik',
+                  props: {
+                    title: 'DFormik',
+                    validationSchema: Yup.object({
+                      title: Yup.string().required(),
+                      fluid: Yup.string().required(),
+                      cols: Yup.string().required(),
+                      featureTypesArry: Yup.string().required(),
+                    }),
+                    fieldList: [
+                      { name: 'title', type: 'text' },
+                      { name: 'fluid', type: 'text' },
+                      { name: 'cols', type: 'text' },
+                      { name: 'featureTypesArry', type: 'text' },
                     ],
                   },
                 },
@@ -148,10 +174,11 @@ export async function fetchDLayout(amount = 1) {
                     '3',
                     '3',
                     '3',
+                    '3',
                   ],
                   featureTypesArry: [
-                    'i',
-                    'i',
+                    'd3',
+                    'dt',
                     'd2',
                     'd',
                     '5',
@@ -176,9 +203,7 @@ export async function fetchDLayout(amount = 1) {
         5000
       )
     );
-  }
-  
-  else {
+  } else {
     return new Promise<{ data: any }>((resolve) =>
       setTimeout(
         () =>
@@ -196,7 +221,7 @@ export async function fetchDLayout(amount = 1) {
                   code: 'd',
                   componentType: 'DFormik',
                   props: {
-                    title: 'CardPlaceholderProps',
+                    title: 'DFormik',
                     validationSchema: Yup.object({
                       firstName: Yup.string()
                         .max(15, 'Must be 15 characters or less')
@@ -226,7 +251,7 @@ export async function fetchDLayout(amount = 1) {
                   code: 'd2',
                   componentType: 'DFormik',
                   props: {
-                    title: 'CardPlaceholderProps',
+                    title: 'DFormik',
                     validationSchema: Yup.object({
                       code: Yup.string().required(),
                       componentType: Yup.string().required(),
@@ -236,6 +261,25 @@ export async function fetchDLayout(amount = 1) {
                       { name: 'code', type: 'text' },
                       { name: 'componentType', type: 'text' },
                       { name: 'props', type: 'text' },
+                    ],
+                  },
+                },
+                {
+                  code: 'd3',
+                  componentType: 'DFormik',
+                  props: {
+                    title: 'DFormik',
+                    validationSchema: Yup.object({
+                      title: Yup.string().required(),
+                      fluid: Yup.string().required(),
+                      cols: Yup.string().required(),
+                      featureTypesArry: Yup.string().required(),
+                    }),
+                    fieldList: [
+                      { name: 'title', type: 'text' },
+                      { name: 'fluid', type: 'text' },
+                      { name: 'cols', type: 'text' },
+                      { name: 'featureTypesArry', type: 'text' },
                     ],
                   },
                 },
@@ -327,8 +371,8 @@ export async function fetchDLayout(amount = 1) {
                     '3',
                   ],
                   featureTypesArry: [
-                    'i',
-                    'i',
+                    'dt',
+                    'd3',
                     'd2',
                     'd',
                     '5',

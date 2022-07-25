@@ -11,7 +11,6 @@ export interface ThreeColumnCardProps {
 
 export function ThreeColumnCard(props: ThreeColumnCardProps) {
   const { sections, jsonData } = useAppSelector(selectDLayout);
-
   return <Layout jsonData={jsonData} sections={sections} />;
 }
 

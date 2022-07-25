@@ -61,6 +61,7 @@ export function Layout(props: LayoutProps) {
     ProductPurchaseCard: require('../../product-purchase-card/product-purchase-card').default,
     Cart: require('../cart/cart').default,
     DFormik: require('../dformik/dformik').default,
+    DServerSimpleTable:require('../dserver-simple-table/dserver-simple-table').default,
     // ProductImages: require('./ProductImages').default,
     ProductImages: require('../product-images/product-images').default,
     AggrigateRating: require('../aggrigate-rating/aggrigate-rating').default,

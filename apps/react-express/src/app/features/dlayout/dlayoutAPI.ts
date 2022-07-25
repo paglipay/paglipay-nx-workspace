@@ -9,6 +9,13 @@ export async function fetchDLayout(amount = 1) {
             data: {
               jsonData: [
                 {
+                  code: 'sst',
+                  componentType: 'DServerSimpleTable',
+                  props: {
+                    title: 'DServerSimpleTable',
+                  },
+                },
+                {
                   code: 'a',
                   componentType: 'AggrigateRating',
                   props: {
@@ -59,6 +66,25 @@ export async function fetchDLayout(amount = 1) {
                       { name: 'code', type: 'text' },
                       { name: 'componentType', type: 'text' },
                       { name: 'props', type: 'text' },
+                    ],
+                  },
+                },
+                {
+                  code: 'd3',
+                  componentType: 'DFormik',
+                  props: {
+                    title: 'CardPlaceholderProps',
+                    validationSchema: Yup.object({
+                      title: Yup.string().required(),
+                      fluid: Yup.string().required(),
+                      cols: Yup.string().required(),
+                      featureTypesArry: Yup.string().required(),
+                    }),
+                    fieldList: [
+                      { name: 'title', type: 'text' },
+                      { name: 'fluid', type: 'text' },
+                      { name: 'cols', type: 'text' },
+                      { name: 'featureTypesArry', type: 'text' },
                     ],
                   },
                 },
@@ -150,8 +176,8 @@ export async function fetchDLayout(amount = 1) {
                     '3',
                   ],
                   featureTypesArry: [
-                    'i',
-                    'i',
+                    'sst',
+                    'd3',
                     'd2',
                     'd',
                     '5',
@@ -176,9 +202,7 @@ export async function fetchDLayout(amount = 1) {
         5000
       )
     );
-  }
-  
-  else {
+  } else {
     return new Promise<{ data: any }>((resolve) =>
       setTimeout(
         () =>

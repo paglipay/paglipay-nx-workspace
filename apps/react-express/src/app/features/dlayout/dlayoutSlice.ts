@@ -14,6 +14,13 @@ export interface dlayoutState {
 const initialState: dlayoutState = {
   jsonData: [
     {
+      code: 'ph',
+      componentType: 'CardPlaceholder',
+      props: {
+        title: 'CardPlaceholderProps',
+      },
+    },
+    {
       code: 'a',
       componentType: 'AggrigateRating',
       props: {
@@ -135,33 +142,51 @@ const initialState: dlayoutState = {
     //   title: 'Section One',
     //   fluid: true,
     //   cols: ['z'],
-    //   featureTypesArry: ['k'],
+    //   featureTypesArry: ['ph'],
+    // },
+    // {
+    //   title: 'Section One',
+    //   fluid: true,
+    //   cols: ['3', '3', '3', '3'],
+    //   featureTypesArry: ['ph', 'ph', 'ph', 'ph'],
     // },
     // {
     //   title: 'Section Title',
     //   fluid: true,
-    //   cols: ['3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3'],
-    //   featureTypesArry: [
-    //     'i',
-    //     'i',
-    //     'd2',
-    //     'd',
-    //     '5',
-    //     '5',
-    //     '5',
-    //     'a',
-    //     'p',
-    //     'p',
-    //     'o',
-    //     'c',
-    //   ],
+    //   cols: ['3', '3', '3', '3', '3', '3', '3', '3'],
+    //   featureTypesArry: ['ph', 'ph', 'ph', 'ph', 'ph', 'ph', 'ph', 'ph'],
     // },
-    // {
-    //   title: 'Section Two',
-    //   fluid: false,
-    //   cols: ['4', '4', '4', '4', '4', '4'],
-    //   featureTypesArry: ['i', 'i', 'i', 'p', 'o', 'c'],
-    // },
+    {
+      title: 'Section One',
+      fluid: true,
+      cols: ['z'],
+      featureTypesArry: ['k'],
+    },
+    {
+      title: 'Section Title',
+      fluid: true,
+      cols: ['3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3'],
+      featureTypesArry: [
+        'i',
+        'i',
+        'd2',
+        'd',
+        '5',
+        '5',
+        '5',
+        'a',
+        'p',
+        'p',
+        'o',
+        'c',
+      ],
+    },
+    {
+      title: 'Section Two',
+      fluid: false,
+      cols: ['4', '4', '4', '4', '4', '4'],
+      featureTypesArry: ['i', 'i', 'i', 'p', 'o', 'c'],
+    },
   ],
   status: 'idle',
 };
@@ -193,7 +218,7 @@ export const dlayoutSlice = createSlice({
       })
       .addCase(dlayoutAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.jsonData = action.payload.jsonData ;
+        state.jsonData = action.payload.jsonData;
         state.sections = action.payload.sections;
       })
       .addCase(dlayoutAsync.rejected, (state) => {

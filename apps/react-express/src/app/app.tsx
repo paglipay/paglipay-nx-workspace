@@ -19,14 +19,28 @@ import { CodelabListsDataAccess } from '@create-nx-workspace/codelab-lists/data-
 // import { dlayoutActions } from './features/dlayout/dlayout.slice'
 import { useSelector } from 'react-redux';
 import { Counter } from './features/counter/Counter';
+import { useAppSelector, useAppDispatch } from './hooks';
+import { selectDLayout, dlayoutAsync } from './features/dlayout/dlayoutSlice';
+
 export const App = () => {
   const [m, setMessage] = useState<Message>({ message: '' });
+  const [toggleVal, setToggleVal] = useState(1);
+  const { status } = useAppSelector(selectDLayout);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     fetch('/api')
       .then((r) => r.json())
       .then(setMessage);
   }, []);
+
+  useEffect(() => {
+    dispatch(dlayoutAsync(toggleVal));
+  }, [dispatch, toggleVal]);
+
+  const toggleLayout = () => {
+    toggleVal ? setToggleVal(0) : setToggleVal(1);
+  };
 
   // console.log('user', user)
   return (
@@ -68,7 +82,9 @@ export const App = () => {
         />
       </Routes> */}
       {/* END: routes */}
-      <Badge bg="success">{m.message}</Badge>
+      <Badge bg="success" onClick={() => toggleLayout()}>
+        {status === 'idle' ? m.message : 'loading'}
+      </Badge>
       {/* <h1>Welcome react-express!</h1> */}
       <div style={{ textAlign: 'center' }}>
         {/* <Counter /> */}

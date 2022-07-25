@@ -124,7 +124,10 @@ export function DFormik(props: DFormikProps) {
               )}
               {e.touched && e.errors ? (
                 <Form.Text className="text-muted">
-                  {JSON.stringify(e)}
+                  <>
+                    {e.errors}
+                    {/* {JSON.stringify(e)} */}
+                  </>
                 </Form.Text>
               ) : null}
             </Form.Group>

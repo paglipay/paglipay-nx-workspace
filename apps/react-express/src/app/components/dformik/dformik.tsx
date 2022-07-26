@@ -5,14 +5,26 @@ import { useFormik } from 'formik';
 import { Form, Card, Button } from 'react-bootstrap';
 import { useAppDispatch } from '../../hooks';
 import { add } from '../../features/dlayout/dlayoutSlice';
+import {
+  decrement,
+  increment,
+  incrementByAmount,
+  incrementAsync,
+  incrementIfOdd,
+  selectCount,
+} from '../../features/counter/counterSlice';
 /* eslint-disable-next-line */
 export interface DFormikProps {
   title: string;
   fieldList: any[];
   validationSchema: any;
+  onSubmit: any;
 }
 DFormik.defaultProps = {
   fieldList: [],
+  onSubmit: (values: any) => {
+    alert(JSON.stringify(values, null, 2));
+  },
 };
 export function DFormik(props: DFormikProps) {
   // const fieldList = props.fieldList;
@@ -26,16 +38,21 @@ export function DFormik(props: DFormikProps) {
   }, {});
 
   const validationSchema = props.validationSchema;
+  const onSubmit = (values: any) => {
+    if ('featureTypesArry' in values) {
+      dispatch(add(values));
+    } else {
+      dispatch(increment());
+    }
+    // alert(JSON.stringify(values, null, 2));
+  };
 
   console.log('initialValues:', initialValues);
 
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values) => {
-      dispatch(add(values));
-      alert(JSON.stringify(values, null, 2));
-    },
+    onSubmit,
   });
 
   // const formikObjs = [

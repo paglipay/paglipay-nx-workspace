@@ -87,7 +87,7 @@ export const App = () => {
       </Badge>
       {/* <h1>Welcome react-express!</h1> */}
       <div style={{ textAlign: 'center' }}>
-        {/* <Counter /> */}
+        <Counter />
         <ThreeColumnCard
           jsonData={[
             {

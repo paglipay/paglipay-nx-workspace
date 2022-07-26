@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from '../../store';
 import { fetchDLayout } from './dlayoutAPI';
 import * as Yup from 'yup';
+
 /*
  * Update these interfaces according to your requirements.
  */
@@ -172,12 +173,11 @@ const initialState: dlayoutState = {
     {
       title: 'Section Title',
       fluid: true,
-      cols: ['3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3'],
+      cols: ['6', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3'],
       featureTypesArry: [
-        'i',
         'dt',
+        'ph',
         'd2',
-        'd',
         '5',
         '5',
         '5',

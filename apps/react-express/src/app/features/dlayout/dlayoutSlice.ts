@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from '../../store';
 import { fetchDLayout } from './dlayoutAPI';
 import * as Yup from 'yup';
+
 /*
  * Update these interfaces according to your requirements.
  */
@@ -13,6 +14,13 @@ export interface dlayoutState {
 
 const initialState: dlayoutState = {
   jsonData: [
+    {
+      code: 'dt',
+      componentType: 'DTable',
+      props: {
+        title: 'DTable',
+      },
+    },
     {
       code: 'ph',
       componentType: 'CardPlaceholder',
@@ -165,12 +173,11 @@ const initialState: dlayoutState = {
     {
       title: 'Section Title',
       fluid: true,
-      cols: ['3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3'],
+      cols: ['6', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3', '3'],
       featureTypesArry: [
-        'i',
-        'i',
+        'dt',
+        'ph',
         'd2',
-        'd',
         '5',
         '5',
         '5',
@@ -204,8 +211,14 @@ export const dlayoutSlice = createSlice({
   name: 'dlayout',
   initialState: initialState,
   reducers: {
-    add: (state) => {
-      console.log('add: ', state);
+    add: (state, action: PayloadAction<any>) => {
+      console.log('add action: ', action);
+      state.sections.push({
+        title: action.payload.title,
+        fluid: action.payload.fluid === 'true' ? true : false,
+        cols: action.payload.cols.split('-'),
+        featureTypesArry: action.payload.featureTypesArry.split('-'),
+      });
     },
     remove: (state) => {
       console.log('add: ', state);

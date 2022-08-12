@@ -10,13 +10,13 @@ export interface SafeframeCPProps {
 
 export function SafeframeCP({ id }: SafeframeCPProps) {
   const getItems = useCallback(() => {
-    return [0, 1, 2];
+    return ['0', '1', '2'];
   }, []);
   // const getItems = () => {
   //   return [...Array(3).keys()];
   // };
   // const [recvMsg, setRecvMsg] = useState([]);
-  const [items, setItems] = useState([0, 1, 2]);
+  const [items, setItems] = useState(['0', '1', '2']);
 
   const sfRef = useRef<HTMLIFrameElement>(null);
   const handleMessage = useCallback(

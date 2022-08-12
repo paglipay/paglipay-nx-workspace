@@ -20,6 +20,9 @@
       ],
       "@create-nx-workspace/codelab-lists/data-access": [
         "libs/codelab-lists/data-access/src/index.ts"
+      ],
+      "@create-nx-workspace/shared/cookies": [
+        "libs/shared/cookies/src/index.ts"
       ]
     }
   },

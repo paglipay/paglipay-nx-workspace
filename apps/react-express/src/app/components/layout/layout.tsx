@@ -62,6 +62,7 @@ export function Layout(props: LayoutProps) {
     Cart: require('../cart/cart').default,
     DFormik: require('../dformik/dformik').default,
     DTable: require('../dtable/dtable').default,
+    SafeframeCp: require('../safeframe-cp/safeframe-cp').default,
     // ProductImages: require('./ProductImages').default,
     ProductImages: require('../product-images/product-images').default,
     AggrigateRating: require('../aggrigate-rating/aggrigate-rating').default,

@@ -4,6 +4,30 @@ export function Data2() {
     data: {
       jsonData: [
         {
+          code: 'sf0',
+          componentType: 'SafeframeCp',
+          props: {
+            id: '0',
+            title: 'Safeframe0',
+          },
+        },
+        {
+          code: 'sf1',
+          componentType: 'SafeframeCp',
+          props: {
+            id: '1',
+            title: 'Safeframe1',
+          },
+        },
+        {
+          code: 'sf2',
+          componentType: 'SafeframeCp',
+          props: {
+            id: '2',
+            title: 'Safeframe2',
+          },
+        },
+        {
           code: 'a',
           componentType: 'AggrigateRating',
           props: {

@@ -1,9 +1,9 @@
-import { getGreeting, getBadge } from '../support/app.po';
+import { getGreeting, getBadge, getH2 } from '../support/app.po';
 
 describe('react-express', () => {
   beforeEach(() => cy.visit('/'));
 
-  it('should display welcome message', () => {
+  it('should display Section One', () => {
     // Custom command example, see `../support/commands.ts` file
     cy.login('my-email@something.com', 'myPassword');
 
@@ -14,6 +14,14 @@ describe('react-express', () => {
     // Function helper example, see `../support/app.po.ts` file
     getBadge().contains('Connected to api!');
   });
+  it('should display SafeFrame Test One and Section Title', () => {
+    ['SafeFrame Test One', 'Section Title', 'Section Two'].forEach((e) => {
+      getGreeting().contains(e);
+    });
+  });
+  it('should display H2s', () => {
+    ['Welcome to DFormik!'].forEach((e) => {
+      getH2().contains(e);
+    });
+  });
 });
-
-

@@ -4,6 +4,30 @@ export function Data() {
     data: {
       jsonData: [
         {
+          code: 'sf0',
+          componentType: 'SafeframeCp',
+          props: {
+            id: '0',
+            title: 'Safeframe0',
+          },
+        },
+        {
+          code: 'sf1',
+          componentType: 'SafeframeCp',
+          props: {
+            id: '1',
+            title: 'Safeframe1',
+          },
+        },
+        {
+          code: 'sf2',
+          componentType: 'SafeframeCp',
+          props: {
+            id: '2',
+            title: 'Safeframe2',
+          },
+        },
+        {
           code: 'dt',
           componentType: 'DTable',
           props: {
@@ -152,6 +176,12 @@ export function Data() {
           fluid: true,
           cols: ['z'],
           featureTypesArry: ['k'],
+        },
+        {
+          title: 'SafeFrame Test One',
+          fluid: false,
+          cols: ['4', '4', '4', '4', '4', '4', '4'],
+          featureTypesArry: ['sf0', 'sf1', 'sf2'],
         },
         {
           title: 'Section Title',
